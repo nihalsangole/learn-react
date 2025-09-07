@@ -1,0 +1,45 @@
+table.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.appointment-table th,
+.appointment-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.appointment-table th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+}
+
+.appointment-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.appointment-table tr:hover {
+  background-color: #e6f7ff;
+}
+
+.appointment-table button {
+  margin-right: 8px;
+  padding: 4px 12px;
+  border: none;
+  background-color: #1976d2;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.appointment-table button:last-child {
+  margin-right: 0;
+  background-color: #d32f2f;
+}
+
+.appointment-table button:hover {
+  opacity: 0.85;
+}
