@@ -1,3 +1,24 @@
+/* Make the header stick to the top of the page */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sticky-header a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.sticky-header a:hover {
+  text-decoration: underline;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;

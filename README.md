@@ -1,69 +1,90 @@
-# React + TypeScript + Vite
+# Virtualized Large Table - React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance virtualized table implementation capable of handling 100,000+ rows without external libraries. Built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Virtualized Scrolling**: Only renders visible rows for optimal performance
+- **Large Dataset Support**: Handles 100k+ rows smoothly
+- **Real-time Filtering**: Filter by status, score range, and text search
+- **Inline Editing**: Edit cells directly in the table
+- **Responsive Design**: Adapts to different screen sizes
+- **Memory Efficient**: Minimal DOM nodes for maximum performance
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/
+│   ├── virtualized-table/
+│   │   ├── Table.tsx           # Main virtualized table component
+│   │   ├── TableApp.tsx        # Parent component with data management
+│   │   ├── TableRow.tsx        # Individual table row component
+│   │   ├── TableCell.tsx       # Editable table cell component
+│   │   ├── FilterBar.tsx       # Filter controls
+│   │   ├── SortBart.tsx        # Sorting controls
+│   │   ├── TableApp.css        # Styling
+│   │   └── README.md           # Detailed documentation
+│   └── utils/
+│       └── generateData.ts     # Data generation utility
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Key Components
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Table.tsx
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The core virtualization logic with custom `useVirtual` hook that calculates visible rows based on scroll position.
+
+### TableApp.tsx
+
+Manages data state, filtering, and editing operations. Uses `useRef` for large datasets and `useMemo` for performance optimization.
+
+### TableCell.tsx
+
+Handles inline editing for score and status columns with proper state management.
+
+## Performance Optimizations
+
+- **React.memo**: Prevents unnecessary re-renders
+- **useCallback**: Memoizes event handlers
+- **useMemo**: Caches expensive calculations
+- **Virtualization**: Only renders visible rows
+- **Custom Hooks**: Separates logic from UI components
+
+## Getting Started
+
+1. Install dependencies:
+
+```bash
+npm install
 ```
+
+2. Start development server:
+
+```bash
+npm run dev
+```
+
+3. Open browser to see the virtualized table in action
+
+## Technical Details
+
+The table uses a custom virtualization algorithm that:
+
+- Calculates visible row range based on scroll position
+- Renders only visible rows plus a small buffer
+- Maintains scroll height with spacer elements
+- Updates efficiently on data changes
+
+This approach reduces DOM nodes from 100,000+ to ~25, resulting in smooth performance even with massive datasets.
+
+## Browser Support
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+## License
+
+MIT

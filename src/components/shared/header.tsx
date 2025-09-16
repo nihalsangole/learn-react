@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
 
-function Header() {
+type HeaderProps = {
+  className?: string;
+};
+
+function Header({ className }: HeaderProps) {
   return (
-    <nav>
-      <Link to='/todo'>todo app</Link> | <Link to='/car_app'>car app</Link> |{' '}
-      <Link to='/contact'>Contact form</Link> |{' '}
-      <Link to='/hooks'>hooks learn</Link> | <Link to='/quiz'>Quiz</Link> |{' '}
+    <nav className={className}>
+      <Link to='/todo'>todo app</Link> | <Link to='/hooks'>hooks learn</Link> |{' '}
+      <Link to='/quiz'>Quiz</Link> |{' '}
       <Link to='/appointment'>Appointment Booking App</Link> |{' '}
+      <Link to='/virtualized-table'>Virtualized Table</Link> |{' '}
     </nav>
   );
 }
